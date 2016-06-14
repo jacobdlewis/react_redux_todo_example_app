@@ -4,9 +4,9 @@ import * as ActionTypes from '../../constants/ActionTypes';
 
 import reducer from '../DashboardReducer';
 
-describe("DashboardReducer", () => {
+describe('DashboardReducer', () => {
 
-  let mockData = { data: "MOCK_DATA" };
+  let mockData = { data: 'MOCK_DATA' };
 
   it('initializes with no data', () => {
     let state = reducer(undefined, {});
@@ -14,10 +14,10 @@ describe("DashboardReducer", () => {
     expect(state.get('data')).toNotExist();
   });
 
-  it("should indicate data is loading", () =>  {
+  it('should indicate data is loading', () => {
     let action = {
       type: ActionTypes.FETCH_DATA_SUCCESS,
-      data: mockData
+      data: mockData,
     };
 
     let state = reducer(undefined, action);

@@ -1,9 +1,9 @@
-import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import DevTools from '../containers/DevTools';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
-import {Iterable} from 'immutable';
+import { Iterable } from 'immutable';
 
 let createStoreWithMiddleware;
 
@@ -23,9 +23,9 @@ createStoreWithMiddleware = compose(
 )(createStore);
 
 export default function configureStore(initialState) {
-   const store = createStoreWithMiddleware(rootReducer, initialState);
+  const store = createStoreWithMiddleware(rootReducer, initialState);
 
-   if (module.hot) {
+  if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextRootReducer = require('../reducers');

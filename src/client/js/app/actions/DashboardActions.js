@@ -2,20 +2,20 @@ import * as ActionTypes from '../constants/ActionTypes';
 
 export function fetchData() {
   return {
-    type: ActionTypes.FETCH_DATA_REQUEST
+    type: ActionTypes.FETCH_DATA_REQUEST,
   };
 }
 
 export function receiveData(data) {
   return {
     type: ActionTypes.FETCH_DATA_SUCCESS,
-    data
+    data,
   };
 }
 
 export function fetchJson() {
 
-  /*return dispatch => {
+  /* return dispatch => {
     dispatch(fetchData());
 
     return fetch(`http://localhost:3000/getJson`)

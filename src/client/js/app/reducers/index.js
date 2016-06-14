@@ -4,5 +4,5 @@ import dashboard from './DashboardReducer';
 
 export default combineReducers({
   app: app,
-  dashboard: dashboard
+  dashboard: dashboard,
 });
