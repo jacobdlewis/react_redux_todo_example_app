@@ -1,0 +1,8 @@
+@import 'vars';
+@import 'mixins';
+@import 'base';
+
+:fullscreen a {
+  display: flex;
+  z-index: z('fullscreen');
+}
