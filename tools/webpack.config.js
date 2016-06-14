@@ -12,7 +12,7 @@ const path = require('path');
 const webpack = require('webpack');
 const extend = require('extend');
 const pkg = require('../package.json');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
@@ -28,22 +28,22 @@ const config = {
 
   // The entry point for the bundle
   entry: {
-    app: [ './js/app/index.js' ],
+    app: ['./js/app/index.js'],
     vendor: [
       'react',
       'react-dom',
       'redux',
       'react-redux',
       'redux-thunk',
-      'immutable'
-    ]
+      'immutable',
+    ],
   },
 
   // Options affecting the output of the compilation
   output: {
     path: path.join(__dirname, '..', 'build', 'js'),
     publicPath: '/js',
-    filename: '[name].js'
+    filename: '[name].js',
   },
 
   // Switch loaders to debug or release mode
@@ -83,7 +83,7 @@ const config = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        loaders: ['babel'],
       },
       {
         test: /\.css$/,
@@ -97,7 +97,7 @@ const config = {
             minimize: !isDebug,
           })}`,
           'postcss-loader',
-          'sass-loader'
+          'sass-loader',
         ]),
       },
       {
