@@ -43,7 +43,7 @@ const config = {
   // Options affecting the output of the compilation
   output: {
     path: path.join(__dirname, '..', 'build', 'js'),
-    publicPath: '/js',
+    publicPath: '/js/', // MUST HAVE TRAILING SLASH
     filename: '[name].js',
   },
 
