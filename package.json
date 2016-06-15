@@ -97,6 +97,7 @@
     "webpack": "^1.10.5",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^1.1.0",
+    "webpack-svgstore-plugin": "^2.2.2",
     "webpack-validator": "^2.1.3"
   }
 }

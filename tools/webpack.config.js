@@ -13,6 +13,11 @@ const webpack = require('webpack');
 const extend = require('extend');
 const pkg = require('../package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const SvgStore = require('webpack-svgstore-plugin');
+const SVGOOpts = { // https://github.com/svg/svgo#what-it-can-do
+  removeTitle: true,
+  removeDoctype: true,
+};
 const SupportedBrowserList = ['last 2 versions', 'ie >= 9'];
 
 const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
@@ -76,6 +81,15 @@ const config = {
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       __DEV__: isDebug,
     }),
+    new SvgStore(
+      path.join('img', 'sprite', '*.svg'),
+      '../img',
+      {
+        name: '[hash].sprite.svg',
+        prefix: '',
+        svgoOptions: { plugins: [SVGOOpts] },
+      }
+    ),
   ],
 
   // Options affecting the normal modules
