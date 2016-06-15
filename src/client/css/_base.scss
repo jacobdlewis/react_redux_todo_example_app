@@ -15,9 +15,26 @@
 }
 
 html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
+  color: $body-text-color;
+  font: $body-font;
+}
+
+/*
+ * Flexbox for sticky footer
+ */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/*
+ * Main should be an immediate child of <body>
+ */
+
+main {
+  flex: 1;
 }
 
 /*
@@ -29,7 +46,7 @@ html {
  */
 
 ::selection {
-  background: #b3d4fc;
+  background: $text-selection-color;
   text-shadow: none;
 }
 
@@ -39,7 +56,7 @@ html {
 
 hr {
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid $border-color;
   display: block;
   height: 1px;
   margin: 1em 0;
@@ -77,6 +94,16 @@ fieldset {
 
 textarea {
   resize: vertical;
+}
+
+/*
+ * Match SVG icons to current color and size of text.
+ */
+
+svg {
+  fill: currentColor;
+  height: 1em;
+  width: 1em;
 }
 
 /*
