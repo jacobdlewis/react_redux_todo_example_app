@@ -4,7 +4,10 @@ class Greeting extends Component {
   render() {
     return (
       <div>
-        Hello world
+        <svg>
+          <use xlinkHref="#home" />
+        </svg>
+        <span>Hello world</span>
       </div>
     );
   }
