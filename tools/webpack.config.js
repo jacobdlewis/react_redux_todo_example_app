@@ -87,6 +87,7 @@ const config = {
       {
         name: '[hash].sprite.svg',
         prefix: '',
+        //chunk: 'vendor', // -> issue: https://github.com/mrsum/webpack-svgstore-plugin/issues/95
         svgoOptions: { plugins: [SVGOOpts] },
       }
     ),
