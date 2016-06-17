@@ -6,7 +6,6 @@ import Greeting from './Greeting';
 class Dashboard extends Component {
 
   render() {
-    const { project, dispatch } = this.props;
     return (
       <div>
         <Greeting />

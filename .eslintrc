@@ -3,7 +3,8 @@
 {
   "extends": "airbnb",
   "globals": {
-    ReaderCore: true
+    ReaderCore: true,
+    __DEV__: true
   },
   "env": {
     "es6": true,
@@ -13,4 +14,7 @@
     "node": true,
     "mocha": true
   },
+  "rules": {
+    "new-cap": 0
+  }
 }

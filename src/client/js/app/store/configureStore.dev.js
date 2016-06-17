@@ -1,22 +1,23 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+/* eslint global-require: "off" */
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import DevTools from '../containers/DevTools';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
 import { Iterable } from 'immutable';
 
-let createStoreWithMiddleware;
-
 const stateTransformer = (state) => {
-  if (Iterable.isIterable(state)) return state.toJS();
-  else return state;
+  if (Iterable.isIterable(state)) {
+    return state.toJS();
+  }
+  return state;
 };
 
 const logger = createLogger({
   stateTransformer,
 });
 
-createStoreWithMiddleware = compose(
+const createStoreWithMiddleware = compose(
   applyMiddleware(thunkMiddleware),
   applyMiddleware(logger),
   DevTools.instrument()

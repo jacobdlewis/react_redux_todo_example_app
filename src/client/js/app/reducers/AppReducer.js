@@ -1,7 +1,7 @@
 import * as ActionTypes from '../constants/ActionTypes';
 import Immutable from 'immutable';
 
-let defaultState = Immutable.Map({});
+const defaultState = Immutable.Map({});
 
 export default function (state = defaultState, action) {
   switch (action.type) {
