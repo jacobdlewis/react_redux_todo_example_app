@@ -2,8 +2,6 @@
 @import 'mixins';
 @import 'base';
 
-body { background-color: green }
-
 :fullscreen a {
   display: flex;
   z-index: z('fullscreen');
