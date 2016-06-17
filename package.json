@@ -49,6 +49,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "history": "^3.0.0",
+    "html-webpack-plugin": "^2.21.0",
     "img-loader": "^1.2.2",
     "immutable": "^3.8.1",
     "istanbul-instrumenter-loader": "^0.2.0",
