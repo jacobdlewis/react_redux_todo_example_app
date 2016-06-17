@@ -14,6 +14,7 @@ const extend = require('extend');
 const pkg = require('../package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SupportedBrowserList = ['last 2 versions', 'ie >= 9'];
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
@@ -42,17 +43,17 @@ const config = {
 
   // Options affecting the output of the compilation
   output: {
-    path: path.join(__dirname, '..', 'build', 'js'),
-    publicPath: '/js/', // MUST HAVE TRAILING SLASH
-    filename: '[name].js',
+    path: path.join(__dirname, '..', 'build'),
+    filename: 'js/[name].[hash].js',
+    publicPath: '/', // MUST HAVE TRAILING SLASH IF NOT /
+    sourceMapFileName: '[name].[hash].js.map',
+    chunkFilename: '[id].chunk.js',
   },
 
   // Switch loaders to debug or release mode
   debug: isDebug,
 
-  // Developer tool to enhance debugging, source maps
-  // http://webpack.github.io/docs/configuration.html#devtool
-  devtool: isDebug ? 'source-map' : false,
+  devtool: 'source-map',
 
   // What information should be printed to the console
   stats: {
@@ -70,8 +71,11 @@ const config = {
   // The list of plugins for Webpack compiler
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-    new ExtractTextPlugin('../css/app.css'),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.[hash].js'),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: 'body',
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       __DEV__: isDebug,
@@ -88,18 +92,8 @@ const config = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', [
-          `css-loader?${JSON.stringify({
-            sourceMap: isDebug,
-            // CSS Modules https://github.com/css-modules/css-modules
-            modules: true,
-            localIdentName: isDebug ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]',
-            // CSS Nano http://cssnano.co/options/
-            minimize: !isDebug,
-          })}`,
-          'postcss-loader',
-          'sass-loader',
-        ]),
+        loader: isDebug ? 'style-loader!css-loader!postcss-loader!sass-loader' :
+          ExtractTextPlugin.extract('style-loader', '!css-loader!postcss-loader!sass-loader'),
       },
       {
         test: /\/sprite\/.*\.svg$/,
@@ -187,6 +181,7 @@ const config = {
 
 // Optimize the bundle in release (production) mode
 if (!isDebug) {
+  config.plugins.push(new ExtractTextPlugin('css/app.[hash].css')),
   config.plugins.push(new webpack.optimize.DedupePlugin());
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: isVerbose } }));
   config.plugins.push(new webpack.optimize.AggressiveMergingPlugin());
