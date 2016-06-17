@@ -13,11 +13,6 @@ const webpack = require('webpack');
 const extend = require('extend');
 const pkg = require('../package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const SvgStore = require('webpack-svgstore-plugin');
-const SVGOOpts = { // https://github.com/svg/svgo#what-it-can-do
-  removeTitle: true,
-  removeDoctype: true,
-};
 const SupportedBrowserList = ['last 2 versions', 'ie >= 9'];
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -85,16 +80,6 @@ const config = {
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       __DEV__: isDebug,
     }),
-    new SvgStore(
-      path.join('img', 'sprite', '*.svg'),
-      '../img',
-      {
-        name: '[hash].sprite.svg',
-        prefix: '',
-        //chunk: 'vendor', // -> issue: https://github.com/mrsum/webpack-svgstore-plugin/issues/95
-        svgoOptions: { plugins: [SVGOOpts] },
-      }
-    ),
   ],
 
   // Options affecting the normal modules
@@ -111,7 +96,19 @@ const config = {
           ExtractTextPlugin.extract('style-loader', '!css-loader!postcss-loader!sass-loader'),
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        test: /\/sprite\/.*\.svg$/,
+        loader: 'svg-sprite?' + JSON.stringify({
+          name: '[name]',
+          prefixize: false,
+        }) + '!img-loader?minimize',
+      },
+      {
+        test: /\.(jpe?g|gif|png|svg)$/,
+        exclude: [/sprite/],
+        loader: 'file-loader?name=img/[name]_[hash].[ext]!img-loader?minimize',
+      },
+      {
+        test: /\.(woff|woff2)$/,
         loader: 'url-loader?limit=10000',
       },
       {
@@ -154,6 +151,30 @@ const config = {
         browser: SupportedBrowserList,
       }),
     ];
+  },
+
+  imagemin: {
+    gifsicle: {
+      interlaced: false,
+    },
+    jpegtran: {
+      progressive: false,
+      arithmetic: false,
+    },
+    optipng: {
+      optimizationLevel: 7,
+    },
+    pngquant: {
+      floyd: 0.5,
+      speed: 2,
+    },
+    svgo: {
+      plugins: [{ // https://github.com/svg/svgo#what-it-can-do
+        removeTitle: true,
+        removeDoctype: true,
+        convertPathData: false,
+      }],
+    },
   },
 
 };

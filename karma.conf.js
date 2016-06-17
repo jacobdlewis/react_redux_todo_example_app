@@ -29,7 +29,14 @@ module.exports = function(config) {
             query: {
               presets: ['airbnb']
             }
-          }
+          },
+          {
+            test: /\/sprite\/.*\.svg$/,
+            loader: 'svg-sprite?' + JSON.stringify({
+              name: '[name]',
+              prefixize: false,
+            }) + '!img-loader?minimize',
+          },
         ],
         postLoaders: [
           {
