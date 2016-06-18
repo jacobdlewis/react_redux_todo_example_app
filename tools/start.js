@@ -12,6 +12,7 @@ const browserSync = require('browser-sync');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const historyApiFallback = require('connect-history-api-fallback');
 const task = require('./task');
 const config = require('./webpack.config');
 
@@ -30,6 +31,7 @@ task('start', () => new Promise(resolve => {
       baseDir: 'src/client',
 
       middleware: [
+        historyApiFallback(),
         webpackDevMiddleware(bundler, {
           // IMPORTANT: dev middleware can't access config, so we should
           // provide publicPath by ourselves
