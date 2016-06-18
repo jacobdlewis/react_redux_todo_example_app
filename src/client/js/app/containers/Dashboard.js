@@ -1,19 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function mapStateToProps() {
-  return {};
+import Greeting from '../components/Greeting';
+
+function mapStateToProps(state) {
+  return {
+    dashboard: state.dashboard,
+    app: state.app,
+  };
 }
 
 function mapDispatchToProps() {
   return {};
 }
 
-function App({ children }) {
+function Dashboard() {
   return (
     <div>
-      <h2>App</h2>
-      { children }
+      <Greeting />
     </div>
   );
 }
@@ -21,4 +25,4 @@ function App({ children }) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(Dashboard);

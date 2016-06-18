@@ -9,11 +9,10 @@ function mapDispatchToProps() {
   return {};
 }
 
-function App({ children }) {
+function AboutPage() {
   return (
     <div>
-      <h2>App</h2>
-      { children }
+      About
     </div>
   );
 }
@@ -21,4 +20,4 @@ function App({ children }) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(AboutPage);
