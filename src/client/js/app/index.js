@@ -4,7 +4,7 @@ import configureStore from './store/configureStore';
 import App from './containers/App';
 
 // Entry point for css and imported here so that webpack will process
-import s from '../../css/app.scss';
+import '../../css/app.scss';
 
 const store = configureStore();
 
