@@ -4,7 +4,6 @@ import * as ActionTypes from '../../constants/ActionTypes';
 import reducer from '../AppReducer';
 
 describe('AppReducer', () => {
-
   it('initializes with no data', () => {
     const state = reducer(undefined, {});
 

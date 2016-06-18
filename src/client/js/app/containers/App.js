@@ -1,3 +1,4 @@
+/* eslint global-require: "off" */
 if (__DEV__) {
   module.exports = require('./App.dev');
 } else {
