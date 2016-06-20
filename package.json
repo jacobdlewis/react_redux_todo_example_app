@@ -6,8 +6,8 @@
   "author": "Kevin Old <kevinold@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "eslint": "./node_modules/.bin/eslint src/client/js tools",
-    "stylelint": "stylelint \"src/client/css/**/*.css\"",
+    "eslint": "./node_modules/.bin/eslint src/client/js",
+    "stylelint": "stylelint \"src/client/css/**/*.scss\"",
     "lint": "npm run eslint && npm run stylelint",
     "test": "NODE_ENV=test karma start --singleRun true",
     "test:watch": "NODE_ENV=test karma start",

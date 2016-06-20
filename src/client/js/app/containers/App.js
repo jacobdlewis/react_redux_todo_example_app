@@ -13,12 +13,13 @@ function App({ children }) {
   return (
     <div>
       <h2>App</h2>
-      { children }
+      {children}
     </div>
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+App.propTypes = {
+  children: React.PropTypes.node,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

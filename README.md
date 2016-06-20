@@ -33,6 +33,7 @@ npm test
 - [babel-preset-react-hmre](https://github.com/danmartinez101/babel-preset-react-hmre): Babel preset for React HMR and Error Catching
 - [babel-preset-stage-1](https://github.com/babel/babel/tree/master/packages): Babel preset for stage 1 plugins
 - [browser-sync](https://github.com/browsersync/browser-sync): Live CSS Reload &amp; Browser Syncing
+- [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback): Provides a fallback for non-existing directories so that the HTML 5 history API can be used.
 - [cpy](https://github.com/sindresorhus/cpy): Copy files
 - [css-loader](https://github.com/webpack/css-loader): css loader module for webpack
 - [del](https://github.com/sindresorhus/del): Delete files/folders using globs
@@ -48,6 +49,7 @@ npm test
 - [extend](https://github.com/justmoon/node-extend): Port of jQuery.extend for node.js and the browser
 - [extract-text-webpack-plugin](https://github.com/webpack/extract-text-webpack-plugin): Extract text from bundle into a file.
 - [file-loader](https://github.com/webpack/file-loader): file loader module for webpack
+- [ghooks](https://github.com/gtramontina/ghooks): Simple git hooks
 - [history](https://github.com/mjackson/history): Manage browser history with JavaScript
 - [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin): Simplifies creation of HTML files to serve your webpack bundles
 - [img-loader](https://github.com/thetalecrafter/img-loader): Image minimizing loader for webpack
@@ -92,6 +94,7 @@ npm test
 - [redux-mock-store](https://github.com/arnaudbenard/redux-mock-store): [![Circle CI](https://circleci.com/gh/arnaudbenard/redux-mock-store/tree/master.svg?style=svg)](https://circleci.com/gh/arnaudbenard/redux-mock-store/tree/master)
 - [redux-router](https://github.com/acdlite/redux-router): Redux bindings for React Router — keep your router state inside your Redux Store.
 - [redux-thunk](https://github.com/gaearon/redux-thunk): Thunk middleware for Redux.
+- [rimraf](https://github.com/isaacs/rimraf): A deep deletion module for node (like `rm -rf`)
 - [s3](https://github.com/andrewrk/node-s3-client): high level amazon s3 client. upload and download files and directories
 - [sass-loader](https://github.com/jtangelder/sass-loader): Sass loader for webpack
 - [sinon](https://github.com/cjohansen/Sinon.JS): JavaScript test spies, stubs and mocks.

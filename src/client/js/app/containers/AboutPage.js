@@ -17,7 +17,4 @@ function AboutPage() {
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AboutPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AboutPage);

@@ -5,8 +5,8 @@ import Dashboard from '../containers/Dashboard';
 import AboutPage from '../containers/AboutPage';
 
 export default (
-  <Route path="/" component={ App }>
-    <IndexRoute component={ Dashboard }/>
-    <Route path="about" component={ AboutPage }/>
+  <Route path="/" component={App}>
+    <IndexRoute component={Dashboard} />
+    <Route path="about" component={AboutPage} />
   </Route>
 );

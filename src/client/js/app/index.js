@@ -11,16 +11,16 @@ import DevTools from './containers/DevTools';
 import '../../css/app.scss';
 
 const store = configureStore({});
-const devTools = __DEV__ ? <DevTools store={ store } /> : undefined;
+const devTools = __DEV__ ? <DevTools store={store} /> : undefined;
 
 ReactDOM.render(
   <div>
-    <Provider store={ store }>
-      <Router history={ browserHistory }>
-        { routes }
+    <Provider store={store}>
+      <Router history={browserHistory}>
+        {routes}
       </Router>
     </Provider>
-    { devTools }
+    {devTools}
   </div>,
   document.getElementById('main')
 );
