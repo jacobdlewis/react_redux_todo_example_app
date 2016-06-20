@@ -11,12 +11,13 @@
     "lint": "npm run eslint && npm run stylelint",
     "test": "NODE_ENV=test karma start --singleRun true",
     "test:watch": "NODE_ENV=test karma start",
-    "clean": "node tools/clean",
-    "build": "NODE_ENV=production node tools/build --release",
-    "build:debug": "node tools/build",
-    "deploy": "node tools/deploy.gh --release",
-    "webpack:validate": "webpack-validator tools/webpack.config.js",
-    "start": "node tools/start"
+    "clean": "rimraf build",
+    "prebuild": "npm run clean",
+    "build": "webpack",
+    "build:prod": "NODE_ENV=production webpack -p --release",
+    "webpack:validate": "webpack-validator webpack.config.js",
+    "prestart": "npm run clean",
+    "start": "browser-sync start --config 'bs-config.js'"
   },
   "engines": {
     "node": ">=6"
@@ -51,6 +52,7 @@
     "extend": "^3.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "ghooks": "^1.2.4",
     "history": "^3.0.0",
     "html-webpack-plugin": "^2.21.0",
     "img-loader": "^1.2.2",
@@ -95,6 +97,7 @@
     "redux-mock-store": "^1.1.0",
     "redux-router": "^1.0.0-beta8",
     "redux-thunk": "^2.1.0",
+    "rimraf": "^2.5.2",
     "s3": "^4.4.0",
     "sass-loader": "^3.2.0",
     "sinon": "^1.17.4",

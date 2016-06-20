@@ -10,8 +10,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const extend = require('extend');
-const pkg = require('../package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SupportedBrowserList = ['last 2 versions', 'ie >= 9'];
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -26,7 +24,7 @@ const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-
 const config = {
 
   // The base directory
-  context: path.join(__dirname, '..', 'src', 'client'),
+  context: path.join(__dirname, 'src', 'client'),
 
   // The entry point for the bundle
   entry: {
@@ -43,7 +41,7 @@ const config = {
 
   // Options affecting the output of the compilation
   output: {
-    path: path.join(__dirname, '..', 'build'),
+    path: path.join(__dirname, 'build'),
     filename: 'js/[name].[hash].js',
     publicPath: '/', // MUST HAVE TRAILING SLASH IF NOT /
     sourceMapFileName: '[name].[hash].js.map',
