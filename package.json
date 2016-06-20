@@ -5,10 +5,16 @@
   "main": "app.js",
   "author": "Kevin Old <kevinold@gmail.com>",
   "license": "MIT",
+  "config": {
+    "ghooks": {
+      "pre-commit": "opt --in pre-commit --exec \"npm run validate\""
+    }
+  },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint src/client/js",
     "stylelint": "stylelint \"src/client/css/**/*.scss\"",
     "lint": "npm run eslint && npm run stylelint",
+    "validate": "npm run lint",
     "test": "NODE_ENV=test karma start --singleRun true",
     "test:watch": "NODE_ENV=test karma start",
     "clean": "rimraf build",
@@ -72,6 +78,7 @@
     "nock": "^8.0.0",
     "node-sass": "^3.7.0",
     "normalizr": "^2.1.0",
+    "opt-cli": "^1.4.2",
     "phantomjs-prebuilt": "^2.1.7",
     "pleeease-filters": "^3.0.0",
     "postcss": "^5.0.21",

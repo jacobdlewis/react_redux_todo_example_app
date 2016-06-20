@@ -85,8 +85,8 @@ const config = {
     loaders: [
       {
         test: /\.jsx?$/,
+        loader: 'babel!eslint',
         exclude: /node_modules/,
-        loaders: ['babel'],
       },
       {
         test: /\.scss$/,
