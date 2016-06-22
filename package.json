@@ -6,6 +6,7 @@
   "author": "Kevin Old <kevinold@gmail.com>",
   "license": "MIT",
   "config": {
+    "SupportedBrowserList": ["last 2 versions", "ie >= 9"],
     "ghooks": {
       "pre-commit": "opt --in pre-commit --exec \"npm run validate\""
     }
