@@ -10,8 +10,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const Package = require('./package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const SupportedBrowserList = ['last 2 versions', 'ie >= 9'];
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
@@ -146,7 +146,7 @@ const config = {
       // Add vendor prefixes to CSS rules using values from caniuse.com
       // https://github.com/postcss/autoprefixer
       require('autoprefixer')({
-        browser: SupportedBrowserList,
+        browser: Package.config.SupportedBrowserList,
       }),
     ];
   },
