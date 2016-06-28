@@ -33,6 +33,7 @@ npm test
 - [babel-preset-react-hmre](https://github.com/danmartinez101/babel-preset-react-hmre): Babel preset for React HMR and Error Catching
 - [babel-preset-stage-1](https://github.com/babel/babel/tree/master/packages): Babel preset for stage 1 plugins
 - [browser-sync](https://github.com/browsersync/browser-sync): Live CSS Reload &amp; Browser Syncing
+- [classnames](https://github.com/JedWatson/classnames): A simple utility for conditionally joining classNames together
 - [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback): Provides a fallback for non-existing directories so that the HTML 5 history API can be used.
 - [cpy](https://github.com/sindresorhus/cpy): Copy files
 - [css-loader](https://github.com/webpack/css-loader): css loader module for webpack
@@ -49,7 +50,6 @@ npm test
 - [extend](https://github.com/justmoon/node-extend): Port of jQuery.extend for node.js and the browser
 - [extract-text-webpack-plugin](https://github.com/webpack/extract-text-webpack-plugin): Extract text from bundle into a file.
 - [file-loader](https://github.com/webpack/file-loader): file loader module for webpack
-- [ghooks](https://github.com/gtramontina/ghooks): Simple git hooks
 - [history](https://github.com/mjackson/history): Manage browser history with JavaScript
 - [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin): Simplifies creation of HTML files to serve your webpack bundles
 - [img-loader](https://github.com/thetalecrafter/img-loader): Image minimizing loader for webpack
