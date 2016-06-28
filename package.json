@@ -6,7 +6,10 @@
   "author": "Kevin Old <kevinold@gmail.com>",
   "license": "MIT",
   "config": {
-    "SupportedBrowserList": ["last 2 versions", "ie >= 9"],
+    "SupportedBrowserList": [
+      "last 2 versions",
+      "ie >= 9"
+    ],
     "ghooks": {
       "pre-commit": "opt --in pre-commit --exec \"npm run validate\""
     }
@@ -43,6 +46,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-1": "^6.5.0",
     "browser-sync": "^2.8.0",
+    "classnames": "^2.2.5",
     "connect-history-api-fallback": "^1.2.0",
     "cpy": "^4.0.1",
     "css-loader": "^0.23.1",
