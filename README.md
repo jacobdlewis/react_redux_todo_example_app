@@ -2,6 +2,21 @@
 
 LifeWay SPA React Boilerplate
 
+# Implementation Notes
+
+- Implement Functional Stateless React components when possible
+- Reducers should use Immutable.js to wrap state
+- Components with state should use a little as posslble favoring Redux for housing all state
+- Container components should pass Immutable data structures to children
+- Utility functions should be functional and must be tested
+- Overall state shape and reducer functionality should be separated by domain where it makes sense, relying on combineReducers() to assemble the root reducer
+- Independent selectors should be used with mapStateToProps when necessary
+- reselect should be used to memoize selectors
+- Tests are to be placed in the `__tests__` directory beside the component, container, reducer or utility.
+- Abstract central logic into a utility method placed in apps/utils. Please implement as ES6/ES2015 modules.
+- [mocha](https://github.com/mochajs/mocha) and [expect](https://github.com/mjackson/expect) are used for testing
+- [axios](https://github.com/mzabriskie/axios) to be used for data retreival (ajax)
+- Use [redux-router](https://github.com/acdlite/redux-router) directly vs redux-router-redux, using [`withRouter` to wrap container components](https://github.com/reactjs/react-router/blob/cbdc49442aba5cc6f225ff5546ac5f4a217fa4ec/upgrade-guides/v2.4.0.md#withrouter-hoc-higher-order-component) for injecting `params`
 
 ## Dependencies
 
