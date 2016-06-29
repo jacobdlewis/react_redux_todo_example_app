@@ -9,6 +9,12 @@ npm install
 npm start
 ```
 
+# Tests
+
+```sh
+npm test
+```
+
 # Implementation Notes
 
 - Implement Functional Stateless React components when possible
