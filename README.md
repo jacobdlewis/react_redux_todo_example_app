@@ -12,7 +12,9 @@ LifeWay SPA React Boilerplate
 - Overall state shape and reducer functionality should be separated by domain where it makes sense, relying on combineReducers() to assemble the root reducer
 - Independent selectors should be used with mapStateToProps when necessary
 - reselect should be used to memoize selectors
-- Tests are to be placed in the `__tests__` directory beside the component, container, reducer or utility.
+- Tests are to be placed in the `__tests__` directory beside the component, container, reducer or utility with `-test` at the end of the filename. (e.g. app/components/Nav.js, app/components/__tests__/Nav-test.js)
+
+
 - Abstract central logic into a utility method placed in apps/utils. Please implement as ES6/ES2015 modules.
 - [mocha](https://github.com/mochajs/mocha) and [expect](https://github.com/mjackson/expect) are used for testing
 - [axios](https://github.com/mzabriskie/axios) to be used for data retreival (ajax)
