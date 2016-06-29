@@ -2,6 +2,13 @@
 
 LifeWay SPA React Boilerplate
 
+# Getting Started
+
+```sh
+npm install
+npm start
+```
+
 # Implementation Notes
 
 - Implement Functional Stateless React components when possible
