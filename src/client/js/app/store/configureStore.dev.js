@@ -7,15 +7,18 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
 import { Iterable } from 'immutable';
 
-const stateTransformer = (state) => {
-  if (Iterable.isIterable(state)) {
-    return state.toJS();
-  }
-  return state;
-};
-
 const logger = createLogger({
-  stateTransformer,
+  stateTransformer: (state) => {
+    var newState = {};
+    for (var i of Object.keys(state)) {
+      if (Iterable.isIterable(state[i])) {
+        newState[i] = state[i].toJS();
+      } else {
+        newState[i] = state[i];
+      }
+    };
+    return newState;
+  }
 });
 
 const createStoreWithMiddleware = compose(
