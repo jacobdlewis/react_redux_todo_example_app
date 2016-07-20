@@ -1,14 +1,14 @@
-import * as ActionTypes from '../constants/ActionTypes';
+import { FETCH_DATA_SUCCESS, FETCH_DATA_REQUEST } from '../constants';
 
 export function fetchData() {
   return {
-    type: ActionTypes.FETCH_DATA_REQUEST,
+    type: FETCH_DATA_REQUEST,
   };
 }
 
 export function receiveData(data) {
   return {
-    type: ActionTypes.FETCH_DATA_SUCCESS,
+    type: FETCH_DATA_SUCCESS,
     data,
   };
 }

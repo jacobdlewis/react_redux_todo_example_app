@@ -1,5 +1,5 @@
 import expect from 'expect';
-import * as ActionTypes from '../../constants/ActionTypes';
+import {FETCH_DATA_REQUEST} from '../../constants';
 
 import reducer from '../AppReducer';
 
@@ -12,7 +12,7 @@ describe('AppReducer', () => {
 
   it('should indicate data is loading', () => {
     const action = {
-      type: ActionTypes.FETCH_DATA_REQUEST,
+      type: FETCH_DATA_REQUEST,
     };
 
     const state = reducer(undefined, action);

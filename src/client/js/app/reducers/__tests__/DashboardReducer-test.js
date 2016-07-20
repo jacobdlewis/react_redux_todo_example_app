@@ -1,5 +1,5 @@
 import expect from 'expect';
-import * as ActionTypes from '../../constants/ActionTypes';
+import {FETCH_DATA_SUCCESS} from '../../constants';
 
 import reducer from '../DashboardReducer';
 
@@ -14,7 +14,7 @@ describe('DashboardReducer', () => {
 
   it('should indicate data is loading', () => {
     const action = {
-      type: ActionTypes.FETCH_DATA_SUCCESS,
+      type: FETCH_DATA_SUCCESS,
       data: mockData,
     };
 
