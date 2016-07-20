@@ -1,5 +1,6 @@
 /* eslint global-require: "off" */
 import { createStore, applyMiddleware, compose } from 'redux';
+import promiseMiddleware from '../middleware/promise-middleware';
 import thunkMiddleware from 'redux-thunk';
 import DevTools from '../containers/DevTools';
 import createLogger from 'redux-logger';
@@ -18,8 +19,7 @@ const logger = createLogger({
 });
 
 const createStoreWithMiddleware = compose(
-  applyMiddleware(thunkMiddleware),
-  applyMiddleware(logger),
+  applyMiddleware(promiseMiddleware, thunkMiddleware, logger),
   DevTools.instrument()
 )(createStore);
 
