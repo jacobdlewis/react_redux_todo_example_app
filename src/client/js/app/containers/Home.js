@@ -15,7 +15,7 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-class App extends React.Component {
+class Home extends React.Component {
 	componentDidMount() {
     this.props.fetchData();
 	}
@@ -27,7 +27,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h2>App!!!! {loadingContent}</h2>
+        <h2>Home!!!! {loadingContent}</h2>
 
         {this.props.children}
       </div>
@@ -35,4 +35,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
