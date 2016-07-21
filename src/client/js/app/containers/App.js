@@ -1,25 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchData } from '../actions/DashboardActions';
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    app: state.app,
+    loading: state.app.loading
+  };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+	return {
+		fetchData: () => dispatch(fetchData())
+	};
 }
 
-function App({ children }) {
-  return (
-    <div>
-      <h2>App</h2>
-      {children}
-    </div>
-  );
-}
+class App extends React.Component {
+	componentDidMount() {
+    this.props.fetchData();
+	}
 
-App.propTypes = {
-  children: React.PropTypes.node,
-};
+  render() {
+    const { app, loading } = this.props;
+
+    const loadingContent = loading ? 'YAY!' : null;
+
+    return (
+      <div>
+        <h2>App!!!! {loadingContent}</h2>
+
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

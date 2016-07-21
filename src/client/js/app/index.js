@@ -10,6 +10,11 @@ import DevTools from './containers/DevTools';
 // Entry point for css and imported here so that webpack will process
 import '../../css/app.scss';
 
+//import { fromJS } from 'immutable';
+// Example of preloading initialState from the server or global variable
+//const initialState = { app: fromJS({ loading: false }), dashboard: fromJS({}) };
+//const store = configureStore(initialState);
+
 const store = configureStore({});
 const devTools = __DEV__ ? <DevTools store={store} /> : undefined;
 

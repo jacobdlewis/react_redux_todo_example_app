@@ -3,6 +3,7 @@ import { FETCH_DATA_SUCCESS, FETCH_DATA_REQUEST } from '../constants';
 export function fetchData() {
   return {
     type: FETCH_DATA_REQUEST,
+    payload: { 'abc': 123 }
   };
 }
 
