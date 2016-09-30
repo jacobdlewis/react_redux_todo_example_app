@@ -1,31 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-
-import routes from './containers/routes';
+import FontFaceObserver from 'fontfaceobserver';
 import configureStore from './store/configureStore';
 import DevTools from './containers/DevTools';
+import acss from './utils/acss';
+import Root from './containers/Root';
 
-// Entry point for css and imported here so that webpack will process
-import '../../css/app.scss';
+let store = configureStore();
 
-//import { fromJS } from 'immutable';
-// Example of preloading initialState from the server or global variable
-//const initialState = { app: fromJS({ loading: false }), dashboard: fromJS({}) };
-//const store = configureStore(initialState);
-
-const store = configureStore({});
+// Dev Tools
 const devTools = __DEV__ ? <DevTools store={store} /> : undefined;
 
+// Take care of font-loading
+(sessionStorage.getItem('foutFontsLoaded') ? Promise.resolve() : new FontFaceObserver('Source Sans Pro').load()).then(() => {
+  document.documentElement.className += ` ${acss('Font-SourceSansPro')}`;
+  sessionStorage.setItem('foutFontsLoaded', 'y');
+});
+
 ReactDOM.render(
-  <div>
-    <Provider store={store}>
-      <Router history={browserHistory}>
-        {routes}
-      </Router>
-    </Provider>
+  <div className={acss('H(100%)')}>
+    <Root store={store} />
     {devTools}
   </div>,
-  document.getElementById('main')
+  document.getElementById('wrapper')
 );

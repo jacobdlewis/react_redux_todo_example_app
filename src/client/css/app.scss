@@ -1,8 +1,5 @@
-@import 'vars';
-@import 'mixins';
+@import 'css-variables.json';
 @import 'base';
-
-:fullscreen a {
-  display: flex;
-  z-index: z('fullscreen');
-}
+@import 'bgimages';
+@import 'animations';
+@import 'atomic'; // <- Generated based on what Atomizer classes we're using: http://acss.io/reference

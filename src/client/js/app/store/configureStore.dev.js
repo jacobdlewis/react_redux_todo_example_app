@@ -1,11 +1,20 @@
 /* eslint global-require: "off" */
+import axios from 'axios';
 import { createStore, applyMiddleware, compose } from 'redux';
-import promiseMiddleware from '../middleware/promise-middleware';
 import thunkMiddleware from 'redux-thunk';
-import DevTools from '../containers/DevTools';
 import createLogger from 'redux-logger';
-import rootReducer from '../reducers/index';
 import { Iterable } from 'immutable';
+import { createLogicMiddleware } from 'redux-logic';
+import DevTools from '../containers/DevTools';
+import rootReducer from '../reducers/index';
+
+import logic from '../logic';
+
+const deps = {
+  httpClient: axios
+};
+
+const logicMiddleware = createLogicMiddleware(logic, deps);
 
 const logger = createLogger({
   stateTransformer: (state) => {
@@ -22,12 +31,12 @@ const logger = createLogger({
 });
 
 const createStoreWithMiddleware = compose(
-  applyMiddleware(promiseMiddleware, thunkMiddleware, logger),
+  applyMiddleware(logicMiddleware, thunkMiddleware, logger),
   DevTools.instrument()
 )(createStore);
 
-export default function configureStore(initialState) {
-  const store = createStoreWithMiddleware(rootReducer, initialState);
+export default function configureStore() {
+  const store = createStoreWithMiddleware(rootReducer);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

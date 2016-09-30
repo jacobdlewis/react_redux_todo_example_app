@@ -1,10 +1,18 @@
+import axios from 'axios';
 import { createStore, applyMiddleware } from 'redux';
-import promiseMiddleware from '../middleware/promise-middleware';
 import thunkMiddleware from 'redux-thunk';
+import { createLogicMiddleware } from 'redux-logic';
 import rootReducer from '../reducers/index';
+import logic from '../logic';
 
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, thunkMiddleware)(createStore);
+const deps = {
+  httpClient: axios
+};
 
-export default function configureStore(initialState) {
-  return createStoreWithMiddleware(rootReducer, initialState);
+const logicMiddleware = createLogicMiddleware(logic, deps);
+
+const createStoreWithMiddleware = applyMiddleware(logicMiddleware, thunkMiddleware)(createStore);
+
+export default function configureStore() {
+  return createStoreWithMiddleware(rootReducer);
 }
