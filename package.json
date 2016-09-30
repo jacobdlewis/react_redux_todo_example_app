@@ -1,6 +1,6 @@
 {
-  "name": "myWSB",
-  "version": "1.0.0",
+  "name": "spa-boilerplate",
+  "version": "2.0.0",
   "description": "LifeWay SPA React Boilerplate",
   "main": "app.js",
   "author": "Kevin Old <kevinold@gmail.com>",

@@ -45,7 +45,6 @@ const config = {
       'redux-thunk',
       'immutable',
       './js/vendor/modernizr-custom.js',
-      './js/vendor/reader-core.min.js',
     ],
     head: ['./js/head/index.js'],
   },

@@ -56,7 +56,6 @@ module.exports = function (config) {
     frameworks: ['mocha'],
 
     files: [
-      './src/client/js/vendor/reader-core.min.js',
       './src/client/js/**/__tests__/*-spec.js',
     ],
     exclude: [
