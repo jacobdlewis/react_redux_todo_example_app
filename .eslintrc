@@ -3,7 +3,11 @@
 {
   "extends": "airbnb",
   "globals": {
+    expect: true,
     ReaderCore: true,
+    epublican: true,
+    Modernizr: true,
+    Atomizer: true,
     __DEV__: true
   },
   "env": {
@@ -15,10 +19,19 @@
     "mocha": true
   },
   "rules": {
+    "max-len": 0,
     "new-cap": 0,
     "no-unused-vars": 1,
+    "comma-dangle": 0,
+    "spaced-comment": 0,
+    "padded-blocks": 1,
+    "space-in-parens": 0,
+    "space-before-function-paren": 0,
+    "no-underscore-dangle": 0,
     "react/prefer-stateless-function": 1,
     "react/prefer-es6-class": 1,
     "react/prop-types": 1,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-boolean-value": 0,
   }
 }
