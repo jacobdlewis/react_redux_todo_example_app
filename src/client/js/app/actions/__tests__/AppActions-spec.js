@@ -47,4 +47,31 @@ describe('App Actions', () => {
 
     expect(Actions.navToggle()).toEqual(expected);
   });
+
+  it('should be a home data pending action', () => {
+    const expected = {
+      type: Constants.HOME_DATA_PENDING
+    };
+
+    expect(Actions.homeDataPending()).toEqual(expected);
+  });
+
+  it('should be a home data success action', () => {
+    const expected = {
+      type: Constants.HOME_DATA_SUCCESS,
+      payload
+    };
+
+    expect(Actions.homeDataSuccess(payload)).toEqual(expected);
+  });
+
+  it('should be a home data error action', () => {
+    const expected = {
+      type: Constants.HOME_DATA_ERROR,
+      payload,
+      error: true
+    };
+
+    expect(Actions.homeDataError(payload)).toEqual(expected);
+  });
 });
