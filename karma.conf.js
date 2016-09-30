@@ -1,81 +1,109 @@
-var webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
 
-module.exports = function(config) {
+const isCI = process.env.SAUCE_USERNAME && process.env.BUILD_NUMBER;
+
+const customLaunchers = {
+  sl_firefox47_win7: {
+    base: 'SauceLabs',
+    browserName: 'firefox',
+    platform: 'Windows 7',
+    version: '47'
+  },
+	/*"sl_ie11_win10": {
+		base: 'SauceLabs',
+		browserName: 'internet explorer',
+		platform: 'Windows 10',
+		version: '11'
+	},
+	"sl_ie10_win7": {
+		base: 'SauceLabs',
+		browserName: 'internet explorer',
+		platform: 'Windows 7',
+		version: '10'
+	},
+	"sl_edge13_win10": {
+		base: 'SauceLabs',
+		browserName: 'MicrosoftEdge',
+		platform: 'Windows 10',
+		version: '13'
+	},
+	"sl_safari9_mac10.11": {
+		base: 'SauceLabs',
+		browserName: 'safari',
+		platform: 'OS X 10.11',
+		version: '9.0'
+	}*/
+};
+
+
+webpackConfig.externals = {
+  'react/addons': true,
+  'react/lib/ExecutionEnvironment': true,
+  'react/lib/ReactContext': true,
+};
+
+
+webpackConfig.plugins = webpackConfig.plugins.filter(plugin => plugin.definitions);
+webpackConfig.devtool = 'eval';
+webpackConfig.resolve = { extensions: ['', '.js', '.jsx', '.json'] };
+webpackConfig.module.loaders[2].loader = 'style-loader!css-loader?-minimize&-import!postcss-loader!sass-loader';
+webpackConfig.postcss = undefined;
+
+
+module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['mocha'],
+
     files: [
-      './src/client/js/**/__tests__/*.js'
+      './src/client/js/vendor/reader-core.min.js',
+      './src/client/js/**/__tests__/*-spec.js',
+    ],
+    exclude: [
+      'node_modules/**.*.js',
     ],
     preprocessors: {
-      './src/client/js/**/*.js': ['webpack'],
-      './test/**/*.js': ['webpack']
+      './src/client/js/**/__tests__/*-spec.js': ['webpack'],
     },
-
-    webpack: {
-      devtool: 'inline-source-map',
-      resolve: {
-        extensions: ['', '.js', '.jsx', '.json']
-      },
-      module: {
-        loaders: [
-          {
-            test: /\.json$/, loader: 'json'
-          },
-          {
-            test: /\.jsx?$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            query: {
-              presets: ['airbnb']
-            }
-          },
-          {
-            test: /\/sprite\/.*\.svg$/,
-            loader: 'svg-sprite?' + JSON.stringify({
-              name: '[name]',
-              prefixize: false,
-            }) + '!img-loader?minimize',
-          },
-        ],
-        postLoaders: [
-          {
-            test: /\.jsx?$/,
-            exclude: /(__tests__|node_modules|bower_components)\//,
-            loader: 'istanbul-instrumenter'
-          }
-        ]
-      },
-      externals: {
-        'react/addons': true,
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
-      },
-      plugins: []
-    },
+    webpack: webpackConfig,
 
     webpackMiddleware: {
       quiet: true,
-      noInfo: true
+      noInfo: true,
     },
 
-    babelPreprocessor: {
-      options: {
-        presets: ['airbnb']
-      }
-    },
-
-    reporters: ['notify', 'mocha', 'coverage'],
+    reporters: isCI ? ['progress', 'mocha', 'coverage'] : ['notify', 'mocha', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    //browsers: ['PhantomJS', 'Chrome'],
-    browsers: ['Chrome'],
+    autoWatch: isCI,
+    //browsers: isCI ? Object.keys(customLaunchers) : ['Chrome'],
+    browsers: isCI ? ['Firefox'] : ['Chrome'],
     singleRun: false,
 
+    sauceLabs: {
+      testName: 'myWSB-BDE',
+      /*parentTunnel: process.env.SAUCE_PARENT_TUNNEL,*/
+      /*tunnelIdentifier: process.env.SAUCE_TUNNEL_IDENTIFIER*/
+    },
+
+    customLaunchers,
+
+    // to avoid DISCONNECTED messages for Sauce Labs
+    browserDisconnectTimeout: 10000, // default 2000
+    browserDisconnectTolerance: 1, // default 0
+    browserNoActivityTimeout: 4 * 60 * 1000, //default 10000
+    captureTimeout: 4 * 60 * 1000, //default 60000
+
+    // to avoid DISCONNECTED messages for Sauce Labs
+    client: {
+      mocha: {
+        timeout: 20000 // 20 seconds
+      }
+    },
+
     mochaReporter: {
-      output: 'autowatch'
+      output: 'autowatch',
     },
 
     coverageReporter: {
@@ -83,8 +111,8 @@ module.exports = function(config) {
       reporters: [
         { type: 'html', subdir: 'report-html' },
         { type: 'text', subdir: '.', file: 'report.txt' },
-        { type: 'text-summary' }
-      ]
+        { type: 'text-summary' },
+      ],
     },
 
     plugins: [
@@ -92,11 +120,12 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-webpack',
       'karma-babel-preprocessor',
-      'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-mocha-reporter',
       'karma-notify-reporter',
-      'istanbul-instrumenter-loader'
-    ]
+      'karma-sauce-launcher',
+      'karma-firefox-launcher',
+      'karma-safari-launcher',
+    ],
   });
 };

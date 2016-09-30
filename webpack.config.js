@@ -11,12 +11,20 @@
 const path = require('path');
 const webpack = require('webpack');
 const Package = require('./package.json');
+
+const atomizerConfig = require('./atomizerConfig');
+const breakPoints = Object.assign({}, atomizerConfig.configs.breakPoints);
+Object.keys(breakPoints).forEach(key => (breakPoints[key] = breakPoints[key].replace('@media', '')));
+
+const sassJsonImporter = require('node-sass-json-importer');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDebug = !(process.argv.includes('--release') || process.argv.includes('-r'));
 const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v');
 
+const cssLoaderConfig = 'css-loader?-minimize&-import'+ (isDebug ? '' : '&modules&localIdentName=[hash:base64:3]') +'!postcss-loader!sass-loader';
 /**
  * Webpack configuration
  * http://webpack.github.io/docs/configuration.html
@@ -36,22 +44,25 @@ const config = {
       'react-redux',
       'redux-thunk',
       'immutable',
+      './js/vendor/modernizr-custom.js',
+      './js/vendor/reader-core.min.js',
     ],
+    head: ['./js/head/index.js'],
   },
 
   // Options affecting the output of the compilation
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'js/[name].[hash].js',
+    filename: isDebug ? 'js/[name].js' : 'js/[name].[chunkhash].js',
     publicPath: '/', // MUST HAVE TRAILING SLASH IF NOT /
-    sourceMapFileName: '[name].[hash].js.map',
-    chunkFilename: '[id].chunk.js',
+    sourceMapFileName: isDebug ? 'js/[name].js' : 'js/[name].[chunkhash].js.map',
+    chunkFilename: isDebug ? '' : 'js/[name].[chunkhash].js',
   },
 
   // Switch loaders to debug or release mode
   debug: isDebug,
 
-  devtool: 'source-map',
+  devtool: isDebug ? 'source-map' : false,
 
   // What information should be printed to the console
   stats: {
@@ -68,15 +79,17 @@ const config = {
 
   // The list of plugins for Webpack compiler
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', minChunks: Infinity, chunks: ['vendor', 'app'] }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.[hash].js'),
     new HtmlWebpackPlugin({
       template: 'index.html',
-      inject: 'body',
+      inject: false,
+      minify: { collapseWhitespace: true }
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isDebug ? '"development"' : '"production"',
       __DEV__: isDebug,
+      Atomizer: JSON.stringify({ breakPoints }),
     }),
   ],
 
@@ -84,15 +97,20 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        //loader: 'babel!eslint',
-        loader: 'babel',
-        exclude: /node_modules/,
+        test: /\.json$/, loader: 'json',
       },
       {
-        test: /\.scss$/,
-        loader: isDebug ? 'style-loader!css-loader!postcss-loader!sass-loader' :
-          ExtractTextPlugin.extract('style-loader', '!css-loader!postcss-loader!sass-loader'),
+        test: /\.jsx?$/,
+        loader: 'webpack-atomizer-loader?configPath='+ __dirname +'/atomizerConfig.js!babel-loader',
+        exclude: /(node_modules|\/js\/vendor)/,
+      },
+      {
+        test: /app\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', '!' + cssLoaderConfig),
+      },
+      {
+        test: /iframe\.scss$/,
+        loader: cssLoaderConfig
       },
       {
         test: /\/sprite\/.*\.svg$/,
@@ -115,6 +133,11 @@ const config = {
         loader: 'file-loader',
       },
     ],
+  },
+
+  //Enable Sass files to import JSON, allowing us to share variables between Atomizer and Sass
+  sassLoader: {
+    importer: sassJsonImporter
   },
 
   // The list of plugins for PostCSS
@@ -142,12 +165,13 @@ const config = {
       // cssnano takes your nicely formatted CSS and runs it through many focused optimisations
       // http://cssnano.co/
       require('cssnano')({
-        comments: { removeAll: true },
+        autoprefixer: false,
+        discardComments: { removeAll: true },
       }),
       // Add vendor prefixes to CSS rules using values from caniuse.com
       // https://github.com/postcss/autoprefixer
       require('autoprefixer')({
-        browser: Package.config.SupportedBrowserList,
+        remove: false,
       }),
     ];
   },
@@ -169,7 +193,6 @@ const config = {
     },
     svgo: {
       plugins: [{ // https://github.com/svg/svgo#what-it-can-do
-        removeTitle: true,
         removeDoctype: true,
         convertPathData: false,
       }],
@@ -179,8 +202,9 @@ const config = {
 };
 
 // Optimize the bundle in release (production) mode
+config.plugins.push(new ExtractTextPlugin((isDebug ? 'css/app.css': 'css/app.[hash].css')));
+
 if (!isDebug) {
-  config.plugins.push(new ExtractTextPlugin('css/app.[hash].css')),
   config.plugins.push(new webpack.optimize.DedupePlugin());
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: isVerbose } }));
   config.plugins.push(new webpack.optimize.AggressiveMergingPlugin());
