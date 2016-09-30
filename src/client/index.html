@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="Content-Language" content="en_US">
-  <meta name="description" content="My WORDsearch Bible is the premier online service to read and study the Bible. By becoming a better student of God’s Word, you become a better teacher of God's Word.">
+  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#0071ba">
-  <title>My WORDsearch Bible</title>
+  <title>LifeWay SPA Boilerplate</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i" rel="stylesheet">
   <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[css] %>">
   <% } %>
   <% for (var js in htmlWebpackPlugin.files.js) { if(htmlWebpackPlugin.files.js[js].startsWith('/js/head')) { %>
-    <script id="script" src="<%= htmlWebpackPlugin.files.js[js] %>?API_ROOT_URL=https://content-apigateway.dev.lifeway.com&GA_KEY="></script>
+    <script id="script" src="<%= htmlWebpackPlugin.files.js[js] %>?API_ROOT_URL=https://MYAPP.dev.lifeway.com&GA_KEY="></script>
   <% }} %>
 </head>
 <body>

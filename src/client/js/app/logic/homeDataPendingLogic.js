@@ -2,7 +2,7 @@ import { createLogic } from 'redux-logic';
 import { HOME_DATA_PENDING } from '../constants';
 import { homeDataSuccess, homeDataError } from '../actions/AppActions';
 
-export const homDataPendingLogic = createLogic({
+export const homeDataPendingLogic = createLogic({
   type: HOME_DATA_PENDING,
   latest: true, // take latest only
 
