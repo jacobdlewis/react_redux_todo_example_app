@@ -1,5 +1,6 @@
 import React from 'react';
 import acss from '../utils/acss';
+import HomeIcon from '../../../img/sprite/home.svg';
 
 export default class Home extends React.Component {
   render() {
@@ -15,6 +16,9 @@ export default class Home extends React.Component {
     return (
       <div {...attrs.div}>
         <h1 {...attrs.h1}>Home</h1>
+        <svg>
+          <use xlinkHref={HomeIcon} />
+        </svg>
       </div>
     );
   }
