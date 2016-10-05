@@ -50,10 +50,11 @@ describe('App Actions', () => {
 
   it('should be a home data pending action', () => {
     const expected = {
-      type: Constants.HOME_DATA_PENDING
+      type: Constants.HOME_DATA_PENDING,
+      payload
     };
 
-    expect(Actions.homeDataPending()).toEqual(expected);
+    expect(Actions.homeDataPending(payload)).toEqual(expected);
   });
 
   it('should be a home data success action', () => {
