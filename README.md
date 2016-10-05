@@ -4,8 +4,29 @@ LifeWay SPA React Boilerplate
 
 # Getting Started
 
+Use [nvm](https://github.com/creationix/nvm) to install and manage Node.js versions.
+The required/recommended version of Node.js can be found in the `.node-version` file.
+
+# Installation
+
+All modules are bundled _in this repository_ using [shrinkpack](https://github.com/JamieMason/shrinkpack).
+
+## Global modules
+
+This repo requires a few global modules to be installed manually.
+
+To install:
 ```sh
-npm install
+npm install -g shrinkpack
+```
+
+## Local modules
+
+Simply run `npm install` to install the local modules needed.
+
+# Running the Environment
+
+```sh
 npm start
 ```
 
