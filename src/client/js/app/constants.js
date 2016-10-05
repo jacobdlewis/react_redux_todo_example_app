@@ -1,4 +1,5 @@
 export const API_ROOT_URL = window.API_ROOT_URL;
+export const LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
 
 export const APP_ON_INIT = 'App/ON_INIT';
 export const APP_ON_RESIZE = 'App/ON_RESIZE';

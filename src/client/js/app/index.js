@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Match } from 'react-router';
+import ConnectedRouter from './ConnectedRouter';
 import FontFaceObserver from 'fontfaceobserver';
 import configureStore from './store/configureStore';
 import DevTools from './containers/DevTools';
 import acss from './utils/acss';
-import Root from './containers/Root';
+import Wrapper from './containers/Wrapper';
 
-let store = configureStore();
+
+const store = configureStore();
 
 // Dev Tools
 const devTools = __DEV__ ? <DevTools store={store} /> : undefined;
@@ -19,7 +23,11 @@ const devTools = __DEV__ ? <DevTools store={store} /> : undefined;
 
 ReactDOM.render(
   <div className={acss('H(100%)')}>
-    <Root store={store} />
+    <Provider store={store}>
+      <ConnectedRouter>
+        <Match pattern="/" component={Wrapper} />
+      </ConnectedRouter>
+    </Provider>
     {devTools}
   </div>,
   document.getElementById('wrapper')
