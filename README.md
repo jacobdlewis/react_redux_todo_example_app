@@ -11,11 +11,20 @@ The required/recommended version of Node.js can be found in the `.node-version` 
 
 All modules are bundled _in this repository_ using [shrinkpack](https://github.com/JamieMason/shrinkpack).
 
+Shrinkpack requires a version of npm higher than 3.10.3.
+
+It is recommended to freeze the version of npm at 3.10.7.
+
+Run:
+```sh
+npm install npm@3.10.7 -g
+```
+
 ## Global modules
 
 This repo requires a few global modules to be installed manually.
 
-To install:
+To install these, run:
 ```sh
 npm install -g shrinkpack
 ```
