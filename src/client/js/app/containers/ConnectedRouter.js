@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import BrowserHistory from 'react-history/BrowserHistory'
 import StaticRouter from 'react-router/StaticRouter'
 
-import { LOCATION_CHANGE } from './constants';
+import { LOCATION_CHANGE } from '../constants';
 
-import history from './utils/history'
+import history from '../utils/history'
 
 class DispatchingRouter extends Component {
   static propTypes = {

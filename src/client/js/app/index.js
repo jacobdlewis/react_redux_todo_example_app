@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Match } from 'react-router';
-import ConnectedRouter from './ConnectedRouter';
+import ConnectedRouter from './containers/ConnectedRouter';
 import FontFaceObserver from 'fontfaceobserver';
 import configureStore from './store/configureStore';
 import DevTools from './containers/DevTools';
