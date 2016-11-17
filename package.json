@@ -7,8 +7,6 @@
   "license": "MIT",
   "config": {},
   "scripts": {
-    "pack:full": "rimraf node_modules node_cache node_shrinkwrap npm-shrinkwrap.json && npm install && npm shrinkwrap && shrinkpack .",
-    "pack": "npm shrinkwrap && shrinkpack .",
     "eslint:all": "eslint src/client/js || true",
     "stylelint": "stylelint \"src/client/css/**/*.scss\"",
     "lint": "npm run eslint && npm run stylelint",
