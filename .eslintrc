@@ -33,5 +33,6 @@
     "react/prop-types": 1,
     "react/jsx-filename-extension": 0,
     "react/jsx-boolean-value": 0,
+    "jsx-a11y/label-has-for": 0
   }
 }
