@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Match, Link } from 'react-router';
 import debounce from 'lodash.debounce';
+import { loadLocale } from '../actions/IntlActions';
 import acss from '../utils/acss';
 import Header from '../components/Header';
 import Home from '../components/Home';
@@ -24,6 +25,7 @@ function mapDispatchToProps(dispatch) {
     onNavToggle: () => dispatch(navToggle()),
     onHomeDataPending: () => dispatch(homeDataPending()),
     onResize: () => dispatch(onResize()),
+    onLoadLocale: (locale) => dispatch(loadLocale(locale)),
   };
 }
 
@@ -58,7 +60,10 @@ export class Wrapper extends React.Component {
   }
 
   onAppEnter() {
-    const { onHomeDataPending } = this.props;
+    const { onHomeDataPending, onLoadLocale } = this.props;
+
+    // TODO: If needed, call onLoadLocale if user is coming from navigator.language === 'es'
+    // onLoadLocale('es');
     onHomeDataPending();
   }
 
@@ -100,7 +105,8 @@ Wrapper.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
   onNavToggle: React.PropTypes.func.isRequired,
   onHomeDataPending: React.PropTypes.func.isRequired,
-  location: React.PropTypes.object.isRequired
+  location: React.PropTypes.object.isRequired,
+  onLoadLocale: React.PropTypes.func.isRequired
 };
 
 

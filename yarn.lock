@@ -6816,6 +6816,12 @@ react-dom@15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.2.tgz#c46b0aa5380d7b838e7a59c4a7beff2ed315531f"
 
+react-history:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/react-history/-/react-history-0.16.1.tgz#c9326f1d8e099da06b5be1b7316eec74c63d48a5"
+  dependencies:
+    history "^4.3.0"
+
 react-immutable-proptypes@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-immutable-proptypes/-/react-immutable-proptypes-2.1.0.tgz#023d6f39bb15c97c071e9e60d00d136eac5fa0b4"

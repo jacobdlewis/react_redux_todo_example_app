@@ -107,6 +107,7 @@
     "react": "15.3.2",
     "react-addons-test-utils": "15.3.2",
     "react-dom": "15.3.2",
+    "react-history": "^0.16.1",
     "react-immutable-proptypes": "2.1.0",
     "react-intl-loader": "^1.0.2",
     "react-intl-redux": "^0.1.1",
