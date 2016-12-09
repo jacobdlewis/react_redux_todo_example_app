@@ -290,9 +290,9 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-atomizer@^3.2.0:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/atomizer/-/atomizer-3.3.7.tgz#2161d875148f80a2fc14a1693d046d6c6a38e211"
+atomizer@^3.3.8:
+  version "3.3.8"
+  resolved "https://registry.yarnpkg.com/atomizer/-/atomizer-3.3.8.tgz#b43ee79af0c6e34ff259cb4d3ba740622b4bbe98"
   dependencies:
     chalk "^1.0.0"
     commander "^2.8.0"
@@ -8598,11 +8598,11 @@ wd@^0.3.4:
     underscore.string "~3.0.3"
     vargs "~0.1.0"
 
-webpack-atomizer-loader@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/webpack-atomizer-loader/-/webpack-atomizer-loader-0.1.1.tgz#311580e1e79c0412413422434d7908fafd419c61"
+webpack-atomizer-loader@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/webpack-atomizer-loader/-/webpack-atomizer-loader-0.1.2.tgz#5c191f1ed3357c93b2eff8c68398a314c092921e"
   dependencies:
-    atomizer "^3.2.0"
+    atomizer "^3.3.8"
     loader-utils "^0.2.11"
 
 webpack-core@~0.6.0:

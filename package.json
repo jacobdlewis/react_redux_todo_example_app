@@ -138,7 +138,7 @@
     "svg-sprite-loader": "0.0.28",
     "url-loader": "^0.5.7",
     "webpack": "1.13.2",
-    "webpack-atomizer-loader": "0.1.1",
+    "webpack-atomizer-loader": "0.1.2",
     "webpack-dev-middleware": "1.8.3",
     "webpack-hot-middleware": "^2.10.0",
     "webpack-svgstore-plugin": "3.0.4",
