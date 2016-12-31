@@ -47,3 +47,10 @@ export function homeDataError(payload) {
     error: true
   };
 }
+
+export function tasksDataPending(payload) {
+  return {
+    type: Constants.TASKS_PENDING,
+    payload
+  };
+}
