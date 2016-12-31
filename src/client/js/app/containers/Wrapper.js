@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce';
 import { loadLocale } from '../actions/IntlActions';
 import acss from '../utils/acss';
 import Header from '../components/Header';
-import Home from '../components/Home';
+import List from '../components/List';
 import Content from '../components/Content';
 import {
   homeDataPending,
@@ -92,7 +92,7 @@ export class Wrapper extends React.Component {
         <div {...attrs.div}>
           <Header isNotMobile={breakpoint_sm} />
           <Content>
-            <Match exactly pattern="/" component={Home} />
+            <Match exactly pattern="/" component={List} />
           </Content>
         </div>
       </main>

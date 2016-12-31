@@ -1,13 +1,13 @@
 import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
-import Home from '../Home';
+import List from '../List';
 
-describe('<Home />', () => {
+describe('<List />', () => {
   let cmpt;
 
   beforeEach(() => {
-    cmpt = shallow(<Home />);
+    cmpt = shallow(<List />);
   });
 
   it('renders without exploding', () => {
