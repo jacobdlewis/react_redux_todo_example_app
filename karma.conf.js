@@ -77,7 +77,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: isCI,
     //browsers: isCI ? Object.keys(customLaunchers) : ['Chrome'],
-    browsers: isCI ? ['Firefox'] : ['Chrome'],
+    browsers: ['Firefox'],
     singleRun: false,
 
     sauceLabs: {
