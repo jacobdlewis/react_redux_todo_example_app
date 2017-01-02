@@ -2,6 +2,7 @@ import React from 'react';
 import acss from '../utils/acss';
 import { tasksDataPending } from '../actions/AppActions';
 import { connect } from 'react-redux';
+import Task from '../components/Task';
 
 function mapStateToProps(state) {
   return {
@@ -17,7 +18,6 @@ function mapDispatchToProps(dispatch) {
 
 export class List extends React.Component {
   componentWillMount() {
-    console.log("list props", this.props)
     this.props.onTasksDataPending();
   }
 
@@ -37,14 +37,10 @@ export class List extends React.Component {
     function renderTasks(tasks) {
       return tasks.map((task) => {
         return(
-          <li key={task.id} {...attrs.listItem}>
-            <strong>{task.name}</strong>
-            <div>{task.description}</div>
-          </li>
+          <Task key={task.id} task={task}></Task>
         )
       })
     }
-
 
     return (
       <div {...attrs.div}>
