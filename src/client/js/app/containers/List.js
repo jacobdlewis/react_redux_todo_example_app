@@ -29,18 +29,29 @@ export class List extends React.Component {
       h1: {
         className: acss('Fw(lr)', 'Fz(1.5em)', 'Fz(1.75em)--sm', 'Mb(gutter)', 'Mt(0)', 'Mx(a)')
       },
-      ul: {
+      list: {
         className: acss('D(f)', 'Fld(c)')
       }
     };
 
+    function renderTasks(tasks) {
+      return tasks.map((task) => {
+        return(
+          <li key={task.id} {...attrs.listItem}>
+            <strong>{task.name}</strong>
+            <div>{task.description}</div>
+          </li>
+        )
+      })
+    }
+
+
     return (
       <div {...attrs.div}>
         <h1 {...attrs.h1}>Tasks:</h1>
-        <ul {...attrs.ul}>
-          <li>Task 1</li>
-          <li>Task 2</li>
-        </ul>
+        <ol {...attrs.list}>
+          {renderTasks(this.props.tasks)}
+        </ol>
       </div>
     );
   }
