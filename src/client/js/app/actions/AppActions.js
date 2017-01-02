@@ -50,7 +50,21 @@ export function homeDataError(payload) {
 
 export function tasksDataPending(payload) {
   return {
-    type: Constants.TASKS_PENDING,
+    type: Constants.TASKS_DATA_PENDING,
+    payload
+  };
+}
+
+export function tasksDataSuccess(payload) {
+  return {
+    type: Constants.TASKS_DATA_SUCCESS,
+    payload
+  };
+}
+
+export function tasksDataError(payload) {
+  return {
+    type: Constants.TASKS_DATA_ERROR,
     payload
   };
 }

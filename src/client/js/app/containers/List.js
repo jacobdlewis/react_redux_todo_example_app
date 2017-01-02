@@ -1,7 +1,26 @@
 import React from 'react';
 import acss from '../utils/acss';
+import { tasksDataPending } from '../actions/AppActions';
+import { connect } from 'react-redux';
 
-export default class List extends React.Component {
+function mapStateToProps(state) {
+  return {
+    tasks: state.app.getIn(['tasks'])
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onTasksDataPending: () => dispatch(tasksDataPending())
+  };
+}
+
+export class List extends React.Component {
+  componentWillMount() {
+    console.log("list props", this.props)
+    this.props.onTasksDataPending();
+  }
+
   render() {
     const attrs = {
       div: {
@@ -26,3 +45,5 @@ export default class List extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);

@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce';
 import { loadLocale } from '../actions/IntlActions';
 import acss from '../utils/acss';
 import Header from '../components/Header';
-import List from '../components/List';
+import List from './List';
 import Content from '../components/Content';
 import {
   homeDataPending,

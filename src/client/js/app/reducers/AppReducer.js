@@ -17,6 +17,7 @@ export const AppStateRecord = Record({
     open: breakPoints.sm,
   }),
   window: getWindowSize(),
+  tasks: new Map()
 });
 
 const defaultState = new AppStateRecord();
@@ -36,6 +37,8 @@ export default function (state = defaultState, action) {
       {
         return state.set('error', fromJS(action.data));
       }
+    case Constants.TASKS_DATA_SUCCESS:
+      return state.set('tasks', action.payload)
 
     default:
       return state;
