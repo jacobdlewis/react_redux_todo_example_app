@@ -18,4 +18,9 @@ describe('<Task />', () => {
   it('renders without exploding', () => {
     expect(cmpt.length).toEqual(1);
   });
+
+  it('is the right type of element', ()=> {
+    expect(cmpt.shallow().type()).toEqual('div');
+  });
+
 });

@@ -1,26 +1,26 @@
 import React from 'react';
 import acss from '../utils/acss';
 
-export default class Task extends React.Component {
+const Task = (props) => {
   
-  render() {
-    const task = this.props.task
-    const attrs = {
-      task: {
-        className: acss('Bgc(white)', 'M(1em)')
-      }
-    };
+  const task = props.task
+  const attrs = {
+    task: {
+      className: acss('Bgc(white)', 'M(1em)')
+    }
+  };
 
-    return (
-      <div  {...attrs.task}>
-        <strong>
-          {task.name}
-        </strong>
-        <div>
-          {task.description}
-        </div>
+  return (
+    <div  {...attrs.task}>
+      <strong>
+        {task.name}
+      </strong>
+      <div>
+        {task.description}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
+
+export default Task;
