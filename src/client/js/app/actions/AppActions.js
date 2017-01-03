@@ -68,3 +68,10 @@ export function tasksDataError(payload) {
     payload
   };
 }
+
+export function taskCreatePending(payload) {
+  return {
+    type: Constants.TASK_CREATE_PENDING,
+    payload
+  }
+}

@@ -13,3 +13,4 @@ export const HOME_DATA_ERROR = 'Home/DATA_ERROR';
 export const TASKS_DATA_PENDING = "Tasks/DATA_PENDING";
 export const TASKS_DATA_SUCCESS = "Tasks/DATA_SUCCESS";
 export const TASKS_DATA_ERROR = "Tasks/DATA_ERROR";
+export const TASK_CREATE_PENDING  = "Task/CREATE_PENDING";

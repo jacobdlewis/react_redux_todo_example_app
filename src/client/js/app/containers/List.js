@@ -3,6 +3,7 @@ import acss from '../utils/acss';
 import { tasksDataPending } from '../actions/AppActions';
 import { connect } from 'react-redux';
 import Task from '../components/Task';
+import { Link } from 'react-router';
 
 function mapStateToProps(state) {
   return {
@@ -45,6 +46,9 @@ export class List extends React.Component {
     return (
       <div {...attrs.div}>
         <h1 {...attrs.h1}>Tasks:</h1>
+        <Link to={"/tasks/new"}>
+          New Task
+        </Link>
         <ol {...attrs.list}>
           {renderTasks(this.props.tasks)}
         </ol>

@@ -6,6 +6,7 @@ import { loadLocale } from '../actions/IntlActions';
 import acss from '../utils/acss';
 import Header from '../components/Header';
 import List from './List';
+import TasksNew from './TasksNew';
 import Content from '../components/Content';
 import {
   homeDataPending,
@@ -93,6 +94,7 @@ export class Wrapper extends React.Component {
           <Header isNotMobile={breakpoint_sm} />
           <Content>
             <Match exactly pattern="/" component={List} />
+            <Match exactly pattern="/tasks/new" component={TasksNew} />
           </Content>
         </div>
       </main>
